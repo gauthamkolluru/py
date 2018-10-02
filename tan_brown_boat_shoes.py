@@ -7,4 +7,4 @@ article = Article("https://www.myntra.com/casual-shoes/carlton-london/carlton-lo
 # print(article.fetch_images())
 
 download = article.download()
-print(download)
+print(type(download))
