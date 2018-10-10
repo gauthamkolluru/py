@@ -1,2 +1,8 @@
 .ipynb_checkpoints
 __pycache__
+package.json
+/venv
+/venv/*
+/venv/*.*
+/google-search-results-python
+/google-search-results-python/*.*
