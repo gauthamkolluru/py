@@ -59,6 +59,7 @@ for medline in root.iter('MedlineCitation'):
     count_articletitle += 1
     # print(pmid)
     print(count_pmid,count_title,count_articletitle)
+    
 
 print('Hi')
 
