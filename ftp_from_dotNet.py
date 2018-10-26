@@ -3,10 +3,12 @@ import gzip
 import os
 import urllib
 import shutil
-import xml.etree.ElementTree as et
+# import xml.etree.ElementTree as et
 from datetime import datetime
 import pymssql
 import sys
+# from bs4 import BeautifulSoup
+from lxml import etree
 
 
 # Finding & Downloading the required file from the FTP server
@@ -37,8 +39,14 @@ else:
         with open(f'd:\\{file_wo_gz}','wb') as of:
             shutil.copyfileobj(go,of)
 
-tree = et.parse(f'd:\\{file_wo_gz}')
+tree = etree.parse(f'd:\\{file_wo_gz}')
 root = tree.getroot()
+# with open(f'd:\\{file_wo_gz}') as fo:
+#     soup = BeautifulSoup(fo,'xml')
+
+
+
+
 
 
 conn = pymssql.connect('CNET','teamlead','gdleads','TestDB')
@@ -46,27 +54,31 @@ cursor = conn.cursor()
 count_pmid = 0
 count_title = 0
 count_articletitle = 0
-for medline in root.iter('MedlineCitation'):
+for medline in root.iter('DateRevised','PMID', 'Title','ArticleTitle', ):
     authorList = []
     mHeading_desc = []
-    pmid = medline.find('PMID').text #.encode(sys.stdout.encoding, errors='replace')
-    for pmid_num in medline.findall('PMID'):
-        pmid = pmid_num.text
-        count_pmid += 1
-    # title = medline.find('Article').find('Journal').find('Title').text
-    count_title += 1
-    # articleTitle = str(medline.find('Article').find('ArticleTitle').text).encode(sys.stdout.encoding, errors='replace')
-    count_articletitle += 1
-    # print(pmid)
-    print(count_pmid,count_title,count_articletitle)
+    count_pmid += 1
+    print(medline.tag, medline.text.encode(sys.stdout.encoding, errors='replace'))
+
+
+#     pmid = medline.find('PMID').text #.encode(sys.stdout.encoding, errors='replace')
+#     for pmid_num in medline.findall('PMID'):
+#         pmid = pmid_num.text
+#         count_pmid += 1
+#     title = medline.find('Article').find('Journal').find('Title').text.encode(sys.stdout.encoding, errors='replace')
+#     count_title += 1
+#     articleTitle = str(medline.find('Article').find('ArticleTitle').text).encode(sys.stdout.encoding, errors='replace')
+#     count_articletitle += 1
+#     # print(pmid)
+#     print(count_pmid,count_title,count_articletitle)
     
 
-print('Hi')
+# print('Hi')
 
     
     
-    # print(pmid,title,articleTitle,country,link_to_pubmed,dateval_day,dateval_month,dateval_year,dateval,current_date)
-conn.commit()
-conn.close
+#     # print(pmid,title,articleTitle,country,link_to_pubmed,dateval_day,dateval_month,dateval_year,dateval,current_date)
+# conn.commit()
+# conn.close
 
 
