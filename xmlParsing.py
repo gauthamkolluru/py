@@ -41,17 +41,18 @@ else:
 
 # Processing XML
 
-dom = ET.parse(f'd:\\{file_wo_gz}')
+# dom = ET.parse(f'd:\\{file_wo_gz}')
+dom = ET.parse(f'd:\\pubmed18n1304.xml')
 root = dom.getroot()
 
-print(len(root))
+print('XML Parsing Started!')
 
 my_object = root.findall('PubmedArticle/MedlineCitation')
 
 
 conn = pymssql.connect('CNET','teamlead','gdleads','TestDB')
 cursor = conn.cursor()
-insert_query_medlinecitation = '''INSERT INTO Pubmed_Medlinecitation_Gautham
+insert_query_medlinecitation = '''INSERT INTO Pubmed_Medlinecitation
         ([PMID]
         ,[Title]
         ,[JournalTitle]
@@ -61,7 +62,8 @@ insert_query_medlinecitation = '''INSERT INTO Pubmed_Medlinecitation_Gautham
         ,[Pub_month]
         ,[Pub_year]
         ,[Pubdate]
-        ,[CreatedDate])
+        ,[CreatedDate]
+        ,[MedlineDate])
     VALUES
         (%s
         ,%s
@@ -72,9 +74,10 @@ insert_query_medlinecitation = '''INSERT INTO Pubmed_Medlinecitation_Gautham
         ,%s
         ,%s
         ,%s
+        ,%s
         ,%s)'''
 
-insert_query_abstractText = '''INSERT INTO [Pubmed_Abstracttext_Gautham]
+insert_query_abstractText = '''INSERT INTO [Pubmed_Abstracttext]
            ([Medlinecitation_id]
            ,[abstracttext]
            ,[label]
@@ -87,7 +90,7 @@ insert_query_abstractText = '''INSERT INTO [Pubmed_Abstracttext_Gautham]
            ,%s
            ,%s)'''
 
-insert_query_author = '''INSERT INTO [Pubmed_author_Gautham]
+insert_query_author = '''INSERT INTO [Pubmed_author]
            ([Medlinecitation_id]
            ,[authfore]
            ,[authinit]
@@ -104,7 +107,7 @@ insert_query_author = '''INSERT INTO [Pubmed_author_Gautham]
            ,%s
            ,%s)'''
 
-insert_query_meshheading = '''INSERT INTO [Pubmed_meshheading_Gautham]
+insert_query_meshheading = '''INSERT INTO [Pubmed_meshheading]
            ([Medlinecitation_id]
            ,[descriptorname]
            ,[majortopicyn]
@@ -121,15 +124,33 @@ insert_query_meshheading = '''INSERT INTO [Pubmed_meshheading_Gautham]
            ,%s
            ,%s)'''
 
+select_query = '''SELECT ID FROM Pubmed_Medlinecitation where PMID = %s'''
+
 try:
 
     for my_obj in my_object:
         pmid = my_obj.find('PMID').text
-        dateval_year = my_obj.find('DateRevised/Year').text
-        dateval_month = my_obj.find('DateRevised/Month').text
-        dateval_day = my_obj.find('DateRevised/Day').text
-        dateval = datetime(int(dateval_year),int(dateval_month),int(dateval_day))
-        dateval = dateval.strftime('%d/%m/%Y')
+        if my_obj.find('DateRevised/Year').text:
+            dateval_year = my_obj.find('DateRevised/Year').text
+        else:
+            dateval_year = ''
+        if my_obj.find('DateRevised/Month').text:
+            dateval_month = my_obj.find('DateRevised/Month').text
+        else:
+            dateval_month = ''
+        if my_obj.find('DateRevised/Day').text:
+            dateval_day = my_obj.find('DateRevised/Day').text
+        else:
+            dateval_day = '01'
+        if dateval_year and dateval_month:
+            dateval = datetime(int(dateval_year),int(dateval_month),int(dateval_day))
+            dateval = dateval.strftime('%d/%m/%Y')
+        else:
+            dateval = ''
+        if dateval is '' and my_obj.find('MedlineDate'):
+            medline_date = my_obj.find('MedlineDate').text
+        else:
+            medline_date = None
         title = my_obj.find('Article/Journal/Title').text
         articleTitle = my_obj.find('Article/ArticleTitle').text
         abs_txt = my_obj.findall('Article/Abstract/AbstractText')
@@ -141,8 +162,18 @@ try:
         author_list = []
         if authors:
             for author in authors:
-                if author.find('LastName') or author.find('ForeName') or author.find('Initials'):
-                    author_list.append({'LastName':author.find('LastName').text,'ForeName':author.find('ForeName').text, 'Initials':author.find('Initials').text, 'Validyn':author.get('Validyn')})
+                Validyn = author.items()[0][1]
+                LastName = ''
+                ForeName = ''
+                Initials = ''
+                for au in author:
+                    if au.tag == 'LastName':
+                        LastName = au.text.encode(sys.stdout.encoding, errors='replace')
+                    if au.tag == 'ForeName':
+                        ForeName = au.text.encode(sys.stdout.encoding, errors='replace')
+                    if au.tag == 'Initials':
+                        Initials = au.text.encode(sys.stdout.encoding, errors='replace')
+                author_list.append({'LastName':LastName,'ForeName':ForeName, 'Initials':Initials, 'Validyn':Validyn})
         country = my_obj.find('MedlineJournalInfo/Country').text
         mh_list = my_obj.findall('MeshHeadingList/MeshHeading/DescriptorName')
         mh_obj = []
@@ -151,19 +182,22 @@ try:
                 mh_obj.append({'DescriptorName':mh.text, 'UI':mh.get('UI'), 'MajorTopicYN':mh.get('MajorTopicYN')})
         link_to_pubmed = f'https://www.ncbi.nlm.nih.gov/pubmed/{pmid}'
         current_date = datetime.now()
-        # print(abstract_list)
-        # print(author_list)
-        # print(mh_obj)
-        cursor.execute(insert_query_medlinecitation,(pmid,title,articleTitle,country,link_to_pubmed,dateval_day,dateval_month,dateval_year,dateval,current_date))
+        cursor.execute(insert_query_medlinecitation,(pmid,title,articleTitle,country,link_to_pubmed,dateval_day,dateval_month,dateval_year,dateval,current_date,medline_date))
+        cursor.execute(select_query,pmid)
+        for val in cursor:
+            ID = val[0]
         if abstract_list and isinstance(abstract_list, collections.Iterable):
             for item in abstract_list:
-                cursor.execute(insert_query_abstractText, (pmid,item['AbstractText'],item['Label'],item['NlmCategory'],current_date))
+                if item['AbstractText']:
+                    cursor.execute(insert_query_abstractText, (ID,item['AbstractText'],item['Label'],item['NlmCategory'],current_date))
         if author_list and isinstance(author_list, collections.Iterable):
             for item in author_list:
-                cursor.execute(insert_query_author, (pmid,item['ForeName'],item['Initials'],item['LastName'],'Null',item['Validyn'],current_date))
+                cursor.execute(insert_query_author, (ID,item['ForeName'],item['Initials'],item['LastName'],'Null',item['Validyn'],current_date))
         if mh_obj and isinstance(mh_obj, collections.Iterable):
             for item in mh_obj:
-                cursor.execute(insert_query_meshheading, (pmid,item['DescriptorName'],item['MajorTopicYN'],'Null','Null',item['UI'],current_date))
+                if item['DescriptorName']:
+                    cursor.execute(insert_query_meshheading, (ID,item['DescriptorName'],item['MajorTopicYN'],'Null','Null',item['UI'],current_date))
+        conn.commit()
 except Exception as e:
     print(e)
     traceback.print_exc()
