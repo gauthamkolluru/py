@@ -8,3 +8,5 @@ package.json
 /google-search-results-python/*.*
 sample.*
 sample1.*
+sample_test.*
+scraping_Google.py
