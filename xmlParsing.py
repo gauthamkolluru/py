@@ -2,6 +2,7 @@ import ftplib
 import gzip
 import os
 import urllib
+import urllib.request
 import shutil
 from datetime import datetime
 import pyodbc
@@ -12,38 +13,37 @@ import traceback
 
 # Finding & Downloading the required file from the FTP server
 
-# ftp = ftplib.FTP('ftp.ncbi.nlm.nih.gov')
-# ftp.login()
-# ftp.cwd('pubmed/updatefiles/')
-# files = ftp.nlst()
-# for file in files[::-1]:
-#     if file.split('.')[-1].lower() == 'gz':
-#         req_file_name = file
-#         break
-# filename = req_file_name
-# file_wo_gz = filename
-# file_wo_gz = file_wo_gz.split('.')
-# file_wo_gz.remove('gz')
-# file_wo_gz = '.'.join(file_wo_gz)
+ftp = ftplib.FTP('ftp.ncbi.nlm.nih.gov')
+ftp.login()
+ftp.cwd('pubmed/updatefiles/')
+files = ftp.nlst()
+for file in files[::-1]:
+    if file.split('.')[-1].lower() == 'gz':
+        req_file_name = file
+        break
+filename = req_file_name
+file_wo_gz = filename
+file_wo_gz = file_wo_gz.split('.')
+file_wo_gz.remove('gz')
+file_wo_gz = '.'.join(file_wo_gz)
 
-# if os.path.exists(f'd:\\{filename}'):
-#     pass
-# else:
-#     urllib.request.urlretrieve(
-#         f'ftp://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/{req_file_name}', f'd:\\{filename}')
+if os.path.exists(f'd:\\{filename}'):
+    pass
+else:
+    urllib.request.urlretrieve(f'ftp://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/{req_file_name}', f'd:\\{filename}')
 
-# if os.path.exists(f'd:\\{file_wo_gz}'):
-#     pass
-# else:
-#     with gzip.open(f'd:\\{filename}', 'rb') as go:
-#         with open(f'd:\\{file_wo_gz}', 'wb') as of:
-#             shutil.copyfileobj(go, of)
+if os.path.exists(f'd:\\{file_wo_gz}'):
+    pass
+else:
+    with gzip.open(f'd:\\{filename}', 'rb') as go:
+        with open(f'd:\\{file_wo_gz}', 'wb') as of:
+            shutil.copyfileobj(go, of)
 
 
 # Processing XML
 
-# dom = ET.parse(f'd:\\{file_wo_gz}')
-dom = ET.parse(f'd:\\pubmed18n1304.xml')
+dom = ET.parse(f'd:\\{file_wo_gz}')
+# dom = ET.parse(f'd:\\pubmed18n1306.xml')
 root = dom.getroot()
 
 print('XML Parsing Started!')
@@ -147,6 +147,8 @@ try:
             dateval_day = '01'
         if dateval_year and dateval_month:
             dateval = dateval_day+'/'+dateval_month+'/'+dateval_year
+        elif dateval_year and (not dateval_month):
+            dateval = dateval_year
         else:
             dateval = ''
         if dateval is '' and hasattr(my_obj.find('Article/Journal/JournalIssue/PubDate/MedlineDate'),'text'):
