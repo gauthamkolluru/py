@@ -6,10 +6,11 @@ from xml.etree import ElementTree as ET
 import collections
 import traceback
 import codecs
-import pymssql
+import pyodbc
 
-conn = pymssql.connect('CNET','teamlead','gdleads','TestDB')
-cursor = conn.cursor()
+# con_string = "DRIVER={SQL Server};SERVER={CNET};DATABASE={TestDB};UID={teamlead};PWD={gdleads}"
+# conn = pyodbc.connect(con_string)
+# cursor = conn.cursor()
 
 
 dom = ET.parse('d:\\pubmed18n1306.xml')
@@ -18,46 +19,50 @@ root = dom.getroot()
 print(len(root))
 
 my_object = root.findall('PubmedArticle/MedlineCitation')
-count =0
+count = 0
 current_date = datetime.now()
-insert_query_author = '''INSERT INTO [Pubmed_author_Gautham]
-           ([Medlinecitation_id]
-           ,[authfore]
-           ,[authinit]
-           ,[authlast]
-           ,[author]
-           ,[validyn]
-           ,[CreatedDate])
-     VALUES
-           (%s
-           ,%s
-           ,%s
-           ,%s
-           ,%s
-           ,%s
-           ,%s)'''
+# insert_query_author = '''INSERT INTO [Pubmed_author_Gautham]
+#            ([Medlinecitation_id]
+#            ,[authfore]
+#            ,[authinit]
+#            ,[authlast]
+#            ,[author]
+#            ,[validyn]
+#            ,[CreatedDate])
+#      VALUES
+#            ((?)
+#            ,(?)
+#            ,(?)
+#            ,(?)
+#            ,(?)
+#            ,(?)
+#            ,(?))'''
 for my_obj in my_object:
-    my_authors = my_obj.findall('Article/AuthorList/Author')
-    # print(len(my_authors))
-    author_list = []
-    for my_author in my_authors:
-        Validyn = my_author.get('Validyn')
-        LastName = ''
-        ForeName = ''
-        Initials = ''
-        for i in my_author:
-            print(i)
-            # if i.tag == 'LastName':
-            #     LastName = i.text.encode(sys.stdout.encoding, errors='replace')
-            # if i.tag == 'ForeName':
-            #     ForeName = i.text.encode(sys.stdout.encoding, errors='replace')
-            # if i.tag == 'Initials':
-            #     Initials = i.text.encode(sys.stdout.encoding, errors='replace')
-            # author_list.append({'LastName':LastName,'ForeName':ForeName, 'Initials':Initials, 'Validyn':Validyn})
-    # if author_list and isinstance(author_list, collections.Iterable):
-    #         for item in author_list:
-    #             cursor.execute(insert_query_author, (1,item['ForeName'],item['Initials'],item['LastName'],'Null',item['Validyn'],current_date))
-    #             conn.commit()
+    # if hasattr(my_obj.find('Article/Journal/JournalIssue/PubDate/Day'),'text'):
+    #     print('hi')
+    if hasattr(my_obj.find('Article/Journal/JournalIssue/PubDate/Year'),'text'):
+        dateval_year = my_obj.find('Article/Journal/JournalIssue/PubDate/Year').text
+    else:
+        dateval_year = ''
+    if hasattr(my_obj.find('Article/Journal/JournalIssue/PubDate/Month'),'text'):
+        dateval_month = my_obj.find('Article/Journal/JournalIssue/PubDate/Month').text
+    else:
+        dateval_month = ''
+    if hasattr(my_obj.find('Article/Journal/JournalIssue/PubDate/Day'),'text'):
+        dateval_day = my_obj.find('Article/Journal/JournalIssue/PubDate/Day').text
+    else:
+        dateval_day = '01'
+    if dateval_year and dateval_month:
+        dateval = dateval_day+'/'+dateval_month+'/'+dateval_year
+    else:
+        dateval = ''
+    if dateval is '' and hasattr(my_obj.find('Article/Journal/JournalIssue/PubDate/MedlineDate'),'text'):
+        medline_date = my_obj.find('Article/Journal/JournalIssue/PubDate/MedlineDate').text
+    else:
+        medline_date = None
+    print('dateval = ',dateval)
+    print('medline_date = ',medline_date)
+
         
-conn.commit()
-conn.close
+# conn.commit()
+# conn.close
