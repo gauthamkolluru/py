@@ -127,11 +127,11 @@ select_query = '''SELECT ID FROM Pubmed_Medlinecitation where PMID = (?)'''
 
 select_existing_pmid = '''SELECT PMID FROM Pubmed_Medlinecitation'''
 
-delete_from_Pubmed_Abstracttext = '''delete from Pubmed_Abstracttext where ID = (?)'''
+delete_from_Pubmed_Abstracttext = '''delete from Pubmed_Abstracttext where Medlinecitation_id = (?)'''
 
-delete_from_Pubmed_author = '''delete from Pubmed_author where ID = (?)'''
+delete_from_Pubmed_author = '''delete from Pubmed_author where Medlinecitation_id = (?)'''
 
-delete_from_Pubmed_meshheading = '''delete from Pubmed_meshheading where ID = (?)'''
+delete_from_Pubmed_meshheading = '''delete from Pubmed_meshheading where Medlinecitation_id = (?)'''
 
 delete_from_Pubmed_Medlinecitation = '''delete from Pubmed_Medlinecitation where PMID = (?)'''
 
