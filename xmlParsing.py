@@ -43,7 +43,7 @@ else:
 # Processing XML
 
 dom = ET.parse(f'd:\\{file_wo_gz}')
-# dom = ET.parse(f'd:\\pubmed18n1306.xml')
+# dom = ET.parse(f'd:\\pubmed18n1310.xml')
 root = dom.getroot()
 
 print('XML Parsing Started!')
@@ -125,14 +125,35 @@ insert_query_meshheading = '''INSERT INTO [Pubmed_meshheading]
 
 select_query = '''SELECT ID FROM Pubmed_Medlinecitation where PMID = (?)'''
 
+select_existing_pmid = '''SELECT PMID FROM Pubmed_Medlinecitation'''
+
+delete_from_Pubmed_Abstracttext = '''delete from Pubmed_Abstracttext where ID = (?)'''
+
+delete_from_Pubmed_author = '''delete from Pubmed_author where ID = (?)'''
+
+delete_from_Pubmed_meshheading = '''delete from Pubmed_meshheading where ID = (?)'''
+
+delete_from_Pubmed_Medlinecitation = '''delete from Pubmed_Medlinecitation where PMID = (?)'''
+
 con_string = "DRIVER={SQL Server};SERVER={CNET};DATABASE={TestDB};UID={teamlead};PWD={gdleads}"
 conn = pyodbc.connect(con_string)
 cursor = conn.cursor()
+cursor.execute(select_existing_pmid)
+existing_PMID_list = list(cursor)
 
 try:
-
     for my_obj in my_object:
         pmid = my_obj.find('PMID').text
+        for each_pmid in existing_PMID_list:
+            if pmid in each_pmid:
+                cursor.execute(select_query,pmid)
+                for val in cursor:
+                    existing_ID = val[0]
+                cursor.execute(delete_from_Pubmed_Abstracttext,existing_ID)
+                cursor.execute(delete_from_Pubmed_author,existing_ID)
+                cursor.execute(delete_from_Pubmed_meshheading,existing_ID)
+                cursor.execute(delete_from_Pubmed_Medlinecitation,pmid)
+                break
         if hasattr(my_obj.find('Article/Journal/JournalIssue/PubDate/Year'),'text'):
             dateval_year = my_obj.find('Article/Journal/JournalIssue/PubDate/Year').text
         else:
@@ -155,8 +176,14 @@ try:
             medline_date = my_obj.find('Article/Journal/JournalIssue/PubDate/MedlineDate').text
         else:
             medline_date = None
-        title = my_obj.find('Article/Journal/Title').text
-        articleTitle = my_obj.find('Article/ArticleTitle').text
+        if hasattr(my_obj.find('Article/Journal/Title'),'text'):
+            title = my_obj.find('Article/Journal/Title').text
+        else:
+            title = ''
+        if hasattr(my_obj.find('Article/ArticleTitle'),'text'):
+            articleTitle = my_obj.find('Article/ArticleTitle').text
+        else:
+            articleTitle = ''
         abs_txt = my_obj.findall('Article/Abstract/AbstractText')
         abstract_list = []
         if abs_txt:
@@ -183,7 +210,10 @@ try:
                             sys.stdout.encoding, errors='replace')
                 author_list.append(
                     {'LastName': LastName, 'ForeName': ForeName, 'Initials': Initials, 'Validyn': Validyn})
-        country = my_obj.find('MedlineJournalInfo/Country').text
+        if hasattr(my_obj.find('MedlineJournalInfo/Country'),'text'):
+            country = my_obj.find('MedlineJournalInfo/Country').text
+        else:
+            country = ''
         mh_list = my_obj.findall('MeshHeadingList/MeshHeading/DescriptorName')
         mh_obj = []
         if mh_list:
