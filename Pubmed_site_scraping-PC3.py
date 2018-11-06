@@ -23,7 +23,7 @@ query_to_update_table = '''INSERT INTO [Pubmed_AbstractInfo]
 cur.execute(query_to_not_use_pmid)
 # not_use_pmid_list = list(cur)
 not_use_pmid_list = [val[0]for val in list(cur)]
-cur.execute("select cast(PubMedID as INT) from TblPublicationTitles where ID < 200000")
+cur.execute("select cast(PubMedID as INT) from TblPublicationTitles where ID >= 400000 AND ID < 500000")
 title_pubmeid_list = [str(val[0]) for val in list(cur)]
 # print(title_pubmeid_list)
 for title_pubmeid in title_pubmeid_list:
@@ -49,6 +49,6 @@ for title_pubmeid in title_pubmeid_list:
                         conn.commit()
                         # break
       except Exception as e:
-            print(e.args,title_pubmeid)
+            print('Error in PMID: ',title_pubmeid)
 conn.commit()
 conn.close
