@@ -7,7 +7,7 @@ from datetime import datetime
 con_string = "DRIVER={SQL Server};SERVER={CNET};DATABASE={Pharma};UID={teamlead};PWD={gdleads}"
 conn = pyodbc.connect(con_string)
 cur = conn.cursor()
-query_to_not_use_pmid = '''select PMID FROM Pubmed_AbstractInfo'''
+query_to_not_use_pmid = '''select PMID FROM Pubmed_AbstractInfo where Abstract != "None"'''
 query_to_update_table = '''INSERT INTO [Pubmed_AbstractInfo]
            ([PMID]
            ,[Title]
@@ -23,7 +23,7 @@ query_to_update_table = '''INSERT INTO [Pubmed_AbstractInfo]
 cur.execute(query_to_not_use_pmid)
 # not_use_pmid_list = list(cur)
 not_use_pmid_list = [val[0]for val in list(cur)]
-cur.execute("select cast(PubMedID as INT) from TblPublicationTitles where ID < 200000")
+cur.execute("select cast(PubMedID as INT) from TblPublicationTitles where ID > 200000 and ID < 500000")
 title_pubmeid_list = [str(val[0]) for val in list(cur)]
 # print(title_pubmeid_list)
 for title_pubmeid in title_pubmeid_list:
@@ -39,11 +39,24 @@ for title_pubmeid in title_pubmeid_list:
                         response = requests.get(url)
                         # print(url,response.status_code)
                         soup = bs(response.text,'html.parser')
-                        abstract_div = soup.find('div',class_='abstr')
-                        # print(str(abstract_div))
-                        site_pmid = soup.find('dl',class_='rprtid').find('dd').find('span',class_='highlight').string
+                        if hasattr(soup,'find'):
+                              abstract_div = soup.find('div',class_='abstr')
+                        else:
+                              abstract_div = None
+                              print(title_pubmeid)
+                        # print(str(abstract_div),title_pubmeid)
+                        if hasattr(soup.find('dl',class_='rprtid'),'find'):
+                              if hasattr(soup.find('dl',class_='rprtid').find('dd'),'find'):
+                                    site_pmid = soup.find('dl',class_='rprtid').find('dd').find('span',class_='highlight').string
+                              else:
+                                    site_pmid = None
+                        else:
+                              site_pmid = None
                         # print(site_pmid)
-                        site_title = soup.find('div',class_='rprt abstract').find('h1').string
+                        if hasattr(soup.find('div',class_='rprt abstract'),'find'):
+                              site_title = soup.find('div',class_='rprt abstract').find('h1').string
+                        else:
+                              site_title = None
                         # print(site_title)
                         cur.execute(query_to_update_table,(title_pubmeid,site_title,str(abstract_div),site_pmid,current_date))
                         conn.commit()
