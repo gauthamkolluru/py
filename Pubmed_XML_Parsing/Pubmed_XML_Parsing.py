@@ -1,28 +1,23 @@
-def main():
-    import ftplib
-    import gzip
-    import os
-    import urllib
-    import urllib.request
-    import shutil
-    from datetime import datetime
-    import pyodbc
-    import sys
-    from xml.etree import ElementTree as ET
-    import collections
-    import traceback
-    import ftp_gz_grab_extract
-    import all_db_queries
-    import xml_BaseTables
-    import baseTables_MasterTables
+import ftp_gz_grab_extract
+import xml_BaseTables
+import baseTables_MasterTables
 
+def main():
     file_wo_gz = ftp_gz_grab_extract.ftp_gz_grab_extract()
 
-    if file_wo_gz:
-        retval = xml_BaseTables.xml_BaseTables(file_wo_gz)
+    # print(file_wo_gz)
 
-    if retval == 0:
-        baseTables_MasterTables.baseTables_MasterTables()
+    for file in file_wo_gz:
+        if file:
+            retval = xml_BaseTables.xml_BaseTables(file)
+            print(f'Completed XML Parsing for {file}')
+
+        if retval == 0:
+            retval_2 = baseTables_MasterTables.baseTables_MasterTables()
+            print(f'Completed transfering Base table data to Master tables for {file}')
+
+        if retval_2 == 0:
+            print('Exec Completed!')
 
 
 

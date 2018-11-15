@@ -12,11 +12,12 @@
     <session id="-915899768">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.23" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.55" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -31,37 +32,43 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2502" />
+          <entry key="py" value="3486" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2502" />
+          <entry key="Python" value="3486" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pubmed_XML_Parsing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+            <state relative-caret-position="235">
+              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding>
-                <marker date="1542181907136" expanded="true" signature="11:12" ph="..." />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/baseTables_MasterTables.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="54" column="37" lean-forward="true" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+            <state relative-caret-position="201">
+              <caret line="341" column="17" lean-forward="true" selection-start-line="341" selection-start-column="17" selection-end-line="341" selection-end-column="17" />
               <folding>
-                <marker date="1542202853477" expanded="true" signature="30:31" ph="..." />
+                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#1365#15469#0" />
+                <element signature="e#2427#6650#0" />
+                <element signature="e#2299#5321#0" />
+                <element signature="e#3143#3884#0" />
+                <element signature="e#3376#3714#0" />
+                <marker date="1542280937115" expanded="true" signature="114:115" ph="..." />
               </folding>
             </state>
           </provider>
@@ -70,10 +77,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xml_BaseTables.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
-              <caret line="120" column="45" selection-start-line="120" selection-start-column="16" selection-end-line="120" selection-end-column="45" />
+            <state relative-caret-position="-1686">
+              <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
               <folding>
-                <marker date="1542196088311" expanded="true" signature="31:32" ph="..." />
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,10 +89,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/all_db_queries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="185" column="22" selection-start-line="185" selection-start-column="9" selection-end-line="185" selection-end-column="22" />
+            <state relative-caret-position="-1295">
+              <caret line="223" column="46" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
               <folding>
-                <marker date="1542201777647" expanded="true" signature="21:22" ph="..." />
+                <marker date="1542290030042" expanded="true" signature="21:22" ph="..." />
               </folding>
             </state>
           </provider>
@@ -94,8 +101,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ftp_gz_grab_extract.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+            <state relative-caret-position="184">
+              <caret line="47" column="57" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#104#165#0" />
+                <element signature="e#1551#1571#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -109,14 +121,20 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>traceback</find>
+      <find>ID_to_truncate</find>
+    </findStrings>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Pubmed_XML_Parsing.py" />
-        <option value="$PROJECT_DIR$/ftp_gz_grab_extract.py" />
-        <option value="$PROJECT_DIR$/xml_BaseTables.py" />
-        <option value="$PROJECT_DIR$/all_db_queries.py" />
         <option value="$PROJECT_DIR$/baseTables_MasterTables.py" />
+        <option value="$PROJECT_DIR$/ftp_gz_grab_extract.py" />
+        <option value="$PROJECT_DIR$/all_db_queries.py" />
+        <option value="$PROJECT_DIR$/Pubmed_XML_Parsing.py" />
+        <option value="$PROJECT_DIR$/xml_BaseTables.py" />
       </list>
     </option>
   </component>
@@ -150,6 +168,34 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Pubmed_XML_Parsing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Pubmed_XML_Parsing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Pubmed_XML_Parsing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Pubmed_XML_Parsing" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -167,12 +213,12 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1580938" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1603631" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -192,49 +238,60 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/baseTables_MasterTables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="341" column="17" lean-forward="true" selection-start-line="341" selection-start-column="17" selection-end-line="341" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#1365#15469#0" />
+            <element signature="e#2427#6650#0" />
+            <element signature="e#2299#5321#0" />
+            <element signature="e#3143#3884#0" />
+            <element signature="e#3376#3714#0" />
+            <marker date="1542280937115" expanded="true" signature="114:115" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/xml_BaseTables.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
-          <caret line="120" column="45" selection-start-line="120" selection-start-column="16" selection-end-line="120" selection-end-column="45" />
+        <state relative-caret-position="-1686">
+          <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
           <folding>
-            <marker date="1542196088311" expanded="true" signature="31:32" ph="..." />
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/all_db_queries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1295">
+          <caret line="223" column="46" selection-start-line="223" selection-start-column="46" selection-end-line="223" selection-end-column="46" />
+          <folding>
+            <marker date="1542290030042" expanded="true" signature="21:22" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ftp_gz_grab_extract.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/all_db_queries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="185" column="22" selection-start-line="185" selection-start-column="9" selection-end-line="185" selection-end-column="22" />
+        <state relative-caret-position="184">
+          <caret line="47" column="57" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="57" />
           <folding>
-            <marker date="1542201777647" expanded="true" signature="21:22" ph="..." />
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#104#165#0" />
+            <element signature="e#1551#1571#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pubmed_XML_Parsing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        <state relative-caret-position="235">
+          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding>
-            <marker date="1542181907136" expanded="true" signature="11:12" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseTables_MasterTables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="54" column="37" lean-forward="true" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
-          <folding>
-            <marker date="1542202853477" expanded="true" signature="30:31" ph="..." />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

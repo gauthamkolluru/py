@@ -1,20 +1,12 @@
+from datetime import datetime
+import pyodbc
+import sys
+from xml.etree import ElementTree as ET
+import collections
+import traceback
+import all_db_queries
+
 def xml_BaseTables(file_wo_gz):
-    import ftplib
-    import gzip
-    import os
-    import urllib
-    import urllib.request
-    import shutil
-    from datetime import datetime
-    import pyodbc
-    import sys
-    from xml.etree import ElementTree as ET
-    import collections
-    import traceback
-    import all_db_queries
-
-
-
     queries = all_db_queries.all_db_queries()
 
     select_queries = queries['seq_b']
@@ -23,8 +15,8 @@ def xml_BaseTables(file_wo_gz):
 
     truncate_queries = queries['trq']
 
-    dom = ET.parse(f'd:\\{file_wo_gz}')
-    # dom = ET.parse(f'd:\\pubmed18n1310.xml')
+    # dom = ET.parse(f'd:\\{file_wo_gz}')
+    dom = ET.parse(file_wo_gz)
     root = dom.getroot()
 
     print('XML Parsing Started!')
@@ -37,10 +29,12 @@ def xml_BaseTables(file_wo_gz):
 
     cursor.execute(select_queries['ID_to_truncate'])
 
-    data_in_temp_tbls = [val[0] for val in cursor]
+    data_in_temp_tbls = [int(val[0]) for val in cursor][0]
+
+    print(data_in_temp_tbls)
 
     # truncate all base tables if data exists if length of 'data_in_temp_tbls' is more than 0
-    if len(data_in_temp_tbls) != 0:
+    if data_in_temp_tbls != 0:
         for key in truncate_queries.keys():
             cursor.execute(truncate_queries[key])
         cursor.commit()
