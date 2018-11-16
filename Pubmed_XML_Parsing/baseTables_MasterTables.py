@@ -17,6 +17,7 @@ def baseTables_MasterTables():
     conn = pyodbc.connect(con_string)
     cursor = conn.cursor()
 
+
     try:
         cursor.execute(select_queries_forBase['existing_pmid'])
         PMID_BaseTables_list = [int(val[0]) for val in cursor]
@@ -26,9 +27,10 @@ def baseTables_MasterTables():
             try:
                 cursor.execute(select_queries_forMaster['PMID_Check'], baseTable_PMID)
                 cur_id_master = [int(val[0]) for val in cursor]
-                if len(cur_id_master) > 0:
-                    for val in cursor:
-                        cur_id_master = val[0]
+                if cur_id_master:
+                    cur_id_master = cur_id_master[0]
+                print(cur_id_master)
+                # exit(1)
                 cursor.execute(select_queries_forBase['ID_for_insertion'], baseTable_PMID)
                 for val in cursor:
                     cur_id_base = val[0]
@@ -51,11 +53,11 @@ def baseTables_MasterTables():
                             if (abs_master['abstracttext'] == abs_base['abstracttext']) and (
                                     abs_master['label'] == abs_base['label']) and (
                                     abs_master['nlmcategory'] == abs_base['nlmcategory']):
-                                break
+                                continue
                             elif (abs_master['abstracttext'] == abs_base['abstracttext']) and (
                                     abs_master['label'] == abs_base['label']) and (
                                     abs_master['nlmcategory'] == abs_base['nlmcategory']):
-                                break
+                                continue
                             elif (abs_master['abstracttext'] in abs_base['abstracttext']) and (
                                     abs_master['abstracttext'] is not abs_base['abstracttext']):
                                 cursor.execute(
@@ -68,7 +70,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['label'] in abs_base['label']) and (
                                     abs_master['label'] is not abs_base['label']):
                                 cursor.execute(
@@ -81,7 +83,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['nlmcategory'] in abs_base['nlmcategory']) and (
                                     abs_master['nlmcategory'] is not abs_base['nlmcategory']):
                                 cursor.execute(
@@ -94,7 +96,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                         else:
                             cursor.execute(
                                 insert_queries_forMaster['abstractText'],
@@ -118,13 +120,13 @@ def baseTables_MasterTables():
                         {'id': val[0], 'authfore': val[1], 'authinit': val[2], 'authlast': val[3], 'author': val[4],
                          'validyn': [5]} for val in cursor]
                     for abs_base in author_base_contents:
-                        for abs_master in author_base_contents:
+                        for abs_master in author_master_contents:
                             if (abs_master['authfore'] == abs_base['authfore']) and (
                                     abs_master['authinit'] == abs_base['authinit']) and (
                                     abs_master['authlast'] == abs_base['authlast']) and (
                                     abs_master['author'] == abs_base['author']) and (
                                     abs_master['validyn'] == abs_base['validyn']):
-                                break
+                                continue
                             elif (abs_master['authfore'] in abs_base['authfore']) and (
                                     abs_master['authfore'] is not abs_base['authfore']):
                                 cursor.execute(
@@ -139,7 +141,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['authinit'] in abs_base['authinit']) and (
                                     abs_master['authinit'] is not abs_base['authinit']):
                                 cursor.execute(
@@ -154,7 +156,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['authlast'] in abs_base['authlast']) and (
                                     abs_master['authlast'] is not abs_base['authlast']):
                                 cursor.execute(
@@ -169,7 +171,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['author'] in abs_base['author']) and (
                                     abs_master['author'] is not abs_base['author']):
                                 cursor.execute(
@@ -184,7 +186,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['validyn'] in abs_base['validyn']) and (
                                     abs_master['validyn'] is not abs_base['validyn']):
                                 cursor.execute(
@@ -199,7 +201,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                         else:
                             cursor.execute(
                                 insert_queries_forMaster['author'],
@@ -233,7 +235,7 @@ def baseTables_MasterTables():
                                     abs_master['meshheading'] == abs_base['meshheading']) and (
                                     abs_master['type'] == abs_base['type']) and (
                                     abs_master['ui'] == abs_base['ui']):
-                                break
+                                continue
                             elif (abs_master['descriptorname'] in abs_base['descriptorname']) and (
                                     abs_master['descriptorname'] is not abs_base['descriptorname']):
                                 cursor.execute(
@@ -248,7 +250,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['majortopicyn'] in abs_base['majortopicyn']) and (
                                     abs_master['majortopicyn'] is not abs_base['majortopicyn']):
                                 cursor.execute(
@@ -263,7 +265,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['meshheading'] in abs_base['meshheading']) and (
                                     abs_master['meshheading'] is not abs_base['meshheading']):
                                 cursor.execute(
@@ -278,7 +280,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['type'] in abs_base['type']) and (
                                     abs_master['type'] is not abs_base['type']):
                                 cursor.execute(
@@ -293,7 +295,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                             elif (abs_master['ui'] in abs_base['ui']) and (
                                     abs_master['ui'] is not abs_base['ui']):
                                 cursor.execute(
@@ -308,7 +310,7 @@ def baseTables_MasterTables():
                                         abs_base['id']
                                     )
                                 )
-                                break
+                                continue
                         else:
                             cursor.execute(
                                 insert_queries_forMaster['abstractText'],
@@ -331,7 +333,7 @@ def baseTables_MasterTables():
                     cursor.execute(insert_queries_forMaster['meshheading'], id)
                     conn.commit()
                     # exit(1)
-                    print(baseTable_PMID)
+                    # print(baseTable_PMID)
             except Exception as e1:
                 print(e1)
                 traceback.print_exc()

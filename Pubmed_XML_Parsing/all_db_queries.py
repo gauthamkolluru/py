@@ -278,7 +278,7 @@ def all_db_queries():
             authinit,
             authlast,
             author,
-            validyn, 
+            validyn 
             FROM Pubmed_Master_Author 
             where Medlinecitation_id = (?)'''}
     )
@@ -290,7 +290,7 @@ def all_db_queries():
             majortopicyn,
             meshheading,
             type,
-            ui, 
+            ui 
             FROM Pubmed_Master_meshheading 
             where Medlinecitation_id = (?)'''}
     )
