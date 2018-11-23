@@ -1,6 +1,10 @@
-from openpyxl import load_workbook
+import openpyxl
 
-wb = load_workbook(filename='C:\\Users\\skolluru\\Documents\\Pharmasourcecom_output_23Nov2018.xlsx',read_only=True)
-print(wb.sheetnames)
+wb = openpyxl.load_workbook(filename='C:\\Users\\skolluru\\Documents\\Pharmasourcecom_output_23Nov2018.xlsx')
 ws = wb[wb.sheetnames[0]]
-print(ws)
+col = ws['A']
+article_file_id = []
+for row in col:
+    article_file_id.append(row.value)
+
+print(article_file_id)
