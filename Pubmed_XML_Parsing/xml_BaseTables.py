@@ -20,6 +20,7 @@ def xml_BaseTables(file_wo_gz):
     root = dom.getroot()
 
     print('XML Parsing Started!')
+    print(datetime.now())
 
     my_object = root.findall('PubmedArticle/MedlineCitation')
 
@@ -42,6 +43,7 @@ def xml_BaseTables(file_wo_gz):
         # cursor.execute(select_queries['existing_pmid'])
         # existing_PMID_list =  [val[0] for val in cursor]
     for my_obj in my_object:
+
         try:
             pmid = my_obj.find('PMID').text
             if hasattr(my_obj.find('Article/Journal/JournalIssue/PubDate/Year'), 'text'):
@@ -137,9 +139,12 @@ def xml_BaseTables(file_wo_gz):
         except Exception as e:
             print(e)
             traceback.print_exc()
+            with open(r'C:\Users\skolluru\Desktop\errorlog.txt','a') as el:
+                el.write(str(traceback.print_exc()))
 
 
     conn.commit()
     conn.close
 
+    print('XML Parsing Completed', datetime.now())
     return 0

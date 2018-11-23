@@ -23,6 +23,8 @@ def main():
 
         if retval_2 == 0:
             print('Exec Completed!')
+            with open(r'C:\Users\skolluru\Desktop\filenames.txt','a') as fn:
+                fn.writelines(file_parsed[-1]+'\n')
 
 
 

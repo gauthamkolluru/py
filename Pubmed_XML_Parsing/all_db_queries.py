@@ -76,36 +76,33 @@ def all_db_queries():
                    ,(?)
                    ,(?))'''})
 
-    insert_queries['master'].update({'medlinecitation': '''INSERT INTO Pubmed_Master_Medlinecitation
-                    ([PMID]
-                    ,[Title]
-                    ,[JournalTitle]
-                    ,[JournalCountry]
-                    ,[LinktoPubmed]
-                    ,[Pub_day]
-                    ,[Pub_month]
-                    ,[Pub_year]
-                    ,[Pubdate]
-                    ,[MedlineDate]
-                    ,[CreatedDate]
-                    ,[ModifiedDate])
-                SELECT 
-                     [PMID]
-                    ,[Title]
-                    ,[JournalTitle]
-                    ,[JournalCountry]
-                    ,[LinktoPubmed]
-                    ,[Pub_day]
-                    ,[Pub_month]
-                    ,[Pub_year]
-                    ,[Pubdate]
-                    ,[MedlineDate]
-                    ,[CreatedDate]
-                    ,[CreatedDate]
-                FROM
-                    Pubmed_Medlinecitation
-                WHERE
-                    PMID = (?)'''})
+    insert_queries['master'].update({'medlinecitation': '''INSERT INTO Pubmed_Master_Medlinecitation ([PMID]
+                    , [Title]
+                    , [JournalTitle]
+                    , [JournalCountry]
+                    , [LinktoPubmed]
+                    , [Pub_day]
+                    , [Pub_month]
+                    , [Pub_year]
+                    , [Pubdate]
+                    , [MedlineDate]
+                    , [CreatedDate]
+                    , [ModifiedDate])
+                        SELECT
+                            [PMID],
+                            [Title],
+                            [JournalTitle],
+                            [JournalCountry],
+                            [LinktoPubmed],
+                            [Pub_day],
+                            [Pub_month],
+                            [Pub_year],
+                            [Pubdate],
+                            [MedlineDate],
+                            [CreatedDate],
+                            [CreatedDate]
+                        FROM Pubmed_Medlinecitation
+                        WHERE Pubmed_Medlinecitation.PMID = (?) and Pubmed_Medlinecitation.ID = (?)'''})
 
     insert_queries['master'].update({'abstractText': '''INSERT INTO Pubmed_Master_Abstracttext
                     (Medlinecitation_id,
@@ -114,16 +111,13 @@ def all_db_queries():
                     nlmcategory,
                     CreatedDate,
                     ModifiedDate)
-                    SELECT 
-                    Medlinecitation_id,
-                    abstracttext,
-                    label,
-                    nlmcategory,
-                    CreatedDate,
-                    CreatedDate 
-                    FROM Pubmed_Abstracttext
-                WHERE
-                    Medlinecitation_id = (?)'''})
+                    VALUES 
+                    ((?),
+                    (?),
+                    (?),
+                    (?),
+                    (?),
+                    (?)) '''})
 
     insert_queries['master'].update({'author': '''INSERT INTO Pubmed_Master_Author
                     (Medlinecitation_id,
@@ -134,18 +128,15 @@ def all_db_queries():
                     validyn,
                     CreatedDate,
                     ModifiedDate)
-                SELECT 
-                    Medlinecitation_id,
-                    authfore,
-                    authinit,
-                    authlast,
-                    author,
-                    validyn,
-                    CreatedDate,
-                    CreatedDate 
-                    FROM Pubmed_author
-                WHERE
-                    Medlinecitation_id = (?)'''})
+                VALUES 
+                    ((?),
+                    (?),
+                    (?),
+                    (?),
+                    (?),
+                    (?),
+                    (?),
+                    (?))'''})
 
     insert_queries['master'].update({'meshheading': '''INSERT INTO Pubmed_Master_meshheading
                     (Medlinecitation_id,
@@ -156,24 +147,15 @@ def all_db_queries():
                     ui,
                     CreatedDate,
                     ModifiedDate)
-                SELECT 
-                    Medlinecitation_id,
-                    descriptorname,
-                    majortopicyn,
-                    meshheading,
-                    type,
-                    ui,
-                    CreatedDate,
-                    CreatedDate 
-                    FROM Pubmed_meshheading
-                WHERE
-                    Medlinecitation_id = (?)'''})
-
-    update_queries.update({
-        'medlinecitation': '''UPDATE [Pubmed_Master_Medlinecitation]
-           SET [ModifiedDate] = (?)
-            WHERE ID = (?) AND PMID = (?)'''
-    })
+                VALUES 
+                    ((?),
+                    (?),
+                    (?),
+                    (?),
+                    (?),
+                    (?),
+                    (?),
+                    (?))'''})
 
     update_queries.update({
         'abstract_text':'''UPDATE Pubmed_Master_Abstracttext
@@ -217,10 +199,6 @@ def all_db_queries():
     )
 
     select_queries['forBase'].update(
-        {'existing_pmid': '''SELECT PMID FROM Pubmed_Medlinecitation'''}
-    )
-
-    select_queries['forBase'].update(
         {'ID_to_truncate': '''select count(ID) from Pubmed_Medlinecitation'''}
     )
 
@@ -241,24 +219,21 @@ def all_db_queries():
             authinit,
             authlast,
             author,
-            validyn, 
+            validyn
             FROM Pubmed_Author 
             where Medlinecitation_id = (?)'''}
     )
 
     select_queries['forBase'].update(
         {'existing_meshheading': '''SELECT
-                authfore,
-                authinit,
-                authlast,
-                author,
-                validyn, 
+                id, 
+                descriptorname,
+                majortopicyn,
+                meshheading,
+                type,
+                ui
                 FROM Pubmed_meshheading 
                 where Medlinecitation_id = (?)'''}
-    )
-
-    select_queries['forMaster'].update(
-        {'PMID_Check': '''SELECT ID FROM Pubmed_Master_Medlinecitation where PMID = (?)'''}
     )
 
     select_queries['forMaster'].update(
