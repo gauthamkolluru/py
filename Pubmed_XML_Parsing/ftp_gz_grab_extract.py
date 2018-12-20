@@ -73,3 +73,4 @@ def ftp_gz_grab_extract():
 
 
     return files_list
+
