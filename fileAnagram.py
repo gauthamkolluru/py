@@ -13,5 +13,3 @@ def signature(wordList):
 print([[v]for k,v in signature(lines).items() if len(v)>1])
 
 
-# Solve later
-
