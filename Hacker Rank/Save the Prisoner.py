@@ -4,14 +4,20 @@
 
 def saveThePrisoner(n, m, s):
     if n == m:
+        return n if s == 1 else n-1
+    elif m < n:
         if s == 1:
-            return n
-        if s > 1:
+            return m
+        elif s == n:
             return n-1
-    if m != n:
+        else:
+            return m - len(range(s,n+1))
+    elif m > n:
         if s == 1:
             return m - n * (m//n)
         else:
-            return s + (m - n * (m // n)) - 1
+            return (m - n * (m // n)) - 1 - (n - s)
+    else:
+        return 0
 
-print(saveThePrisoner(352926151,380324688,94730870))
+print(saveThePrisoner(46934,543563655,46743))
