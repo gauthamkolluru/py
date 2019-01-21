@@ -1,20 +1,21 @@
 import scrapy
+from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor as le
 from bs4 import BeautifulSoup as bs
 
+class FollCareer(CrawlSpider):
+    name = 'spider1'
+    allowed_domains = ['valuelabs.com']
+    start_urls = ['https://www.valuelabs.com/valuelabs-careers/']
+    rules = (
+            Rule
+                (le
+                    (
+                        allow = ('/current-job-postings',)
+                    )
+                )
+            )
 
-class spider1(scrapy.Spider):
-    name = "spider1"
-    start_urls=['https://www.valuelabs.com/valuelabs-careers/']
-    def parse(self, response):
-        links = le(unique=True).extract_links(response)
-        for link in links:
-            self.parse(link.url) if link.text == 'Current Openings' else print(None)
-       #return self.read_response(response)
 
-    #def read_response(self,html_body):
-        #self.html_body = html_body
-        #self.root = bs(self.html_body, 'lxml')
-        #links =  le(canonicalize=True, unique=True).extract_links(self.html_body)
-        #for link in links:
-            #print(link.url) if link.text == 'Current Openings' else print(None)
+    def parse_page(self, response):
+        print(response.body)
