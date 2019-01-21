@@ -15,7 +15,6 @@ def xml_BaseTables(file_wo_gz):
 
     truncate_queries = queries['trq']
 
-    # dom = ET.parse(f'd:\\{file_wo_gz}')
     dom = ET.parse(file_wo_gz)
     root = dom.getroot()
 

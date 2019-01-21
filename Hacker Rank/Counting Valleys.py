@@ -25,11 +25,11 @@ def countingValleys(n, s):
                 down_count += 1
             elif s[i] == 'U':
                 up_count += 1
-        print('Value of i = ', i)
-        print('Valley Count = ', valley_count)
-        print('Down Count = ', down_count)
-        print('Up Count = ', up_count)
-        print('Mountain Count = ', mountain_count)
+        # print('Value of i = ', i)
+        # print('Valley Count = ', valley_count)
+        # print('Down Count = ', down_count)
+        # print('Up Count = ', up_count)
+        # print('Mountain Count = ', mountain_count)
     return valley_count
 
 print(countingValleys(4,'DUDU'))
