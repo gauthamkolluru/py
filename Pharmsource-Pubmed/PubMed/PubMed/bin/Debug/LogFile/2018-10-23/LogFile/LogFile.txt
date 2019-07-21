@@ -1,0 +1,24 @@
+23-10-2018 15:18:28 ==> PubMed xml data inserting into tables started.
+23-10-2018 15:18:28 ==> PubMed xml data inserted into tables completed successfully.
+23-10-2018 15:24:28 ==> PubMed xml data inserting into tables started.
+23-10-2018 15:24:28 ==> PubMed xml data inserted into tables completed successfully.
+23-10-2018 16:49:48 ==> PubMed xml.zp file download started.
+23-10-2018 16:49:48 ==> PubMed pubmed18n1303.xml.gz file download completed.
+23-10-2018 16:50:39 ==> PubMed xml.zp file Extraction started.
+23-10-2018 16:50:39 ==> PubMed xml.zp file Extraction completed.
+23-10-2018 16:50:51 ==> PubMed xml data inserting into tables started.
+23-10-2018 17:03:44 ==> PubMed xml.zp file download started.
+23-10-2018 17:03:44 ==> PubMed pubmed18n1303.xml.gz file download completed.
+23-10-2018 17:04:10 ==> PubMed xml.zp file Extraction started.
+23-10-2018 17:04:10 ==> PubMed xml.zp file Extraction completed.
+23-10-2018 17:04:11 ==> PubMed xml data inserting into tables started.
+23-10-2018 17:10:34 ==> PubMed xml.zp file download started.
+23-10-2018 17:10:34 ==> PubMed pubmed18n1303.xml.gz file download completed.
+23-10-2018 17:11:13 ==> PubMed xml.zp file Extraction started.
+23-10-2018 17:11:13 ==> PubMed xml.zp file Extraction completed.
+23-10-2018 17:11:15 ==> PubMed xml data inserting into tables started.
+23-10-2018 17:13:14 ==> PubMed xml.zp file download started.
+23-10-2018 17:13:14 ==> PubMed pubmed18n1303.xml.gz file download completed.
+23-10-2018 17:13:40 ==> PubMed xml.zp file Extraction started.
+23-10-2018 17:13:40 ==> PubMed xml.zp file Extraction completed.
+23-10-2018 17:13:41 ==> PubMed xml data inserting into tables started.

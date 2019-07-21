@@ -1,0 +1,9 @@
+24-10-2018 12:35:44 ==> PubMed xml.zp file download started.
+24-10-2018 12:35:44 ==> PubMed pubmed18n1304.xml.gz file download completed.
+24-10-2018 12:36:41 ==> PubMed xml.zp file Extraction started.
+24-10-2018 12:36:41 ==> System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\Work_Suresh\Testing\PubMed\PubMed\obj\Debug\Extracts\pubmed18n1304.xml'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.Create(String path)
+   at PubMed.Program.ReadDownloads(String fileName) in D:\Work_Suresh\Testing\PubMed\PubMed\Program.cs:line 119

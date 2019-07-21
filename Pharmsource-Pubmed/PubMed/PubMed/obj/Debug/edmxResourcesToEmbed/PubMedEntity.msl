@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestDBModelStoreContainer" CdmEntityContainer="TestDBEntities1">
+    <EntitySetMapping Name="tb_medlinecitation">
+      <EntityTypeMapping TypeName="TestDBModel.tb_medlinecitation">
+        <MappingFragment StoreEntitySet="tb_medlinecitation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tb_MedlineCitationSet_id" ColumnName="tb_MedlineCitationSet_id" />
+          <ScalarProperty Name="abstract" ColumnName="abstract" />
+          <ScalarProperty Name="article" ColumnName="article" />
+          <ScalarProperty Name="articledate" ColumnName="articledate" />
+          <ScalarProperty Name="articletitle" ColumnName="articletitle" />
+          <ScalarProperty Name="authorlist" ColumnName="authorlist" />
+          <ScalarProperty Name="chemicallist" ColumnName="chemicallist" />
+          <ScalarProperty Name="citedmedium" ColumnName="citedmedium" />
+          <ScalarProperty Name="commentscorrectionslist" ColumnName="commentscorrectionslist" />
+          <ScalarProperty Name="completeyn" ColumnName="completeyn" />
+          <ScalarProperty Name="copyrightinformation" ColumnName="copyrightinformation" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="databanklist" ColumnName="databanklist" />
+          <ScalarProperty Name="datecompleted" ColumnName="datecompleted" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="daterevised" ColumnName="daterevised" />
+          <ScalarProperty Name="datetype" ColumnName="datetype" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="forename" ColumnName="forename" />
+          <ScalarProperty Name="generalnote" ColumnName="generalnote" />
+          <ScalarProperty Name="grantlist" ColumnName="grantlist" />
+          <ScalarProperty Name="initials" ColumnName="initials" />
+          <ScalarProperty Name="investigatorlist" ColumnName="investigatorlist" />
+          <ScalarProperty Name="isoabbreviation" ColumnName="isoabbreviation" />
+          <ScalarProperty Name="issn" ColumnName="issn" />
+          <ScalarProperty Name="issnlinking" ColumnName="issnlinking" />
+          <ScalarProperty Name="issntype" ColumnName="issntype" />
+          <ScalarProperty Name="issue" ColumnName="issue" />
+          <ScalarProperty Name="journal" ColumnName="journal" />
+          <ScalarProperty Name="journalissue" ColumnName="journalissue" />
+          <ScalarProperty Name="keywordlist" ColumnName="keywordlist" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="medlinecitation" ColumnName="medlinecitation" />
+          <ScalarProperty Name="medlinedate" ColumnName="medlinedate" />
+          <ScalarProperty Name="medlinejournalinfo" ColumnName="medlinejournalinfo" />
+          <ScalarProperty Name="medlinepgn" ColumnName="medlinepgn" />
+          <ScalarProperty Name="medlineta" ColumnName="medlineta" />
+          <ScalarProperty Name="meshheadinglist" ColumnName="meshheadinglist" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="nlmuniqueid" ColumnName="nlmuniqueid" />
+          <ScalarProperty Name="numberofreferences" ColumnName="numberofreferences" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="pagination" ColumnName="pagination" />
+          <ScalarProperty Name="personalnamesubject" ColumnName="personalnamesubject" />
+          <ScalarProperty Name="personalnamesubjectlist" ColumnName="personalnamesubjectlist" />
+          <ScalarProperty Name="pmid" ColumnName="pmid" />
+          <ScalarProperty Name="pubdate" ColumnName="pubdate" />
+          <ScalarProperty Name="publicationtypelist" ColumnName="publicationtypelist" />
+          <ScalarProperty Name="pubmodel" ColumnName="pubmodel" />
+          <ScalarProperty Name="season" ColumnName="season" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="supplmeshlist" ColumnName="supplmeshlist" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="vernaculartitle" ColumnName="vernaculartitle" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="volume" ColumnName="volume" />
+          <ScalarProperty Name="year" ColumnName="year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pubmed_Abstracttext">
+      <EntityTypeMapping TypeName="TestDBModel.Pubmed_Abstracttext">
+        <MappingFragment StoreEntitySet="Pubmed_Abstracttext">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="nlmcategory" ColumnName="nlmcategory" />
+          <ScalarProperty Name="label" ColumnName="label" />
+          <ScalarProperty Name="abstracttext" ColumnName="abstracttext" />
+          <ScalarProperty Name="Medlinecitation_id" ColumnName="Medlinecitation_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pubmed_author">
+      <EntityTypeMapping TypeName="TestDBModel.Pubmed_author">
+        <MappingFragment StoreEntitySet="Pubmed_author">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="validyn" ColumnName="validyn" />
+          <ScalarProperty Name="author" ColumnName="author" />
+          <ScalarProperty Name="authlast" ColumnName="authlast" />
+          <ScalarProperty Name="authinit" ColumnName="authinit" />
+          <ScalarProperty Name="authfore" ColumnName="authfore" />
+          <ScalarProperty Name="Medlinecitation_id" ColumnName="Medlinecitation_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pubmed_Medlinecitation">
+      <EntityTypeMapping TypeName="TestDBModel.Pubmed_Medlinecitation">
+        <MappingFragment StoreEntitySet="Pubmed_Medlinecitation">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Pubdate" ColumnName="Pubdate" />
+          <ScalarProperty Name="Pub_year" ColumnName="Pub_year" />
+          <ScalarProperty Name="Pub_month" ColumnName="Pub_month" />
+          <ScalarProperty Name="Pub_day" ColumnName="Pub_day" />
+          <ScalarProperty Name="LinktoPubmed" ColumnName="LinktoPubmed" />
+          <ScalarProperty Name="JournalCountry" ColumnName="JournalCountry" />
+          <ScalarProperty Name="JournalTitle" ColumnName="JournalTitle" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="PMID" ColumnName="PMID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pubmed_meshheading">
+      <EntityTypeMapping TypeName="TestDBModel.Pubmed_meshheading">
+        <MappingFragment StoreEntitySet="Pubmed_meshheading">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ui" ColumnName="ui" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="meshheading" ColumnName="meshheading" />
+          <ScalarProperty Name="majortopicyn" ColumnName="majortopicyn" />
+          <ScalarProperty Name="descriptorname" ColumnName="descriptorname" />
+          <ScalarProperty Name="Medlinecitation_id" ColumnName="Medlinecitation_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

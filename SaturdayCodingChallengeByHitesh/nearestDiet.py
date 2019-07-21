@@ -5,6 +5,6 @@ def nearestDiet(arr, nm):
 
 arr = [100,50,150,250,20,30,130]
 
-new_mem = 50
+new_mem = 140
 
 print(nearestDiet(arr, new_mem))

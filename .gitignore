@@ -11,3 +11,10 @@ sample*.*
 sample1.*
 sample_test.*
 scraping_Google.py
+*/*.mp4
+/botenv/*
+/botenv/*/*.*
+*.csv
+/*.csv
+*.zip
+/*.zip
