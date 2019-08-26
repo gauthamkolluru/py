@@ -18,3 +18,6 @@ scraping_Google.py
 /*.csv
 *.zip
 /*.zip
+*.pkl
+*.pickle
+*.dat
