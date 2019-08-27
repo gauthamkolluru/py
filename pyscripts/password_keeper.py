@@ -43,15 +43,15 @@ def show_password(cipsut, site_name,site_user):
     pl = read_pickle()
     if len(pl) < 1:
         print('File is empty!')
-    elif site_name and site_name in pl.keys():
-        if site_user and site_user in pl[site_name].keys():
+    elif site_name and site_name in pl:
+        if site_user and site_user in pl[site_name]:
             print(cipsut.decrypt(pl[site_name][site_user]))
         else:
-            for i in pl[site_name].items():
+            for i in pl[site_name]:
                 print(cipsut.decrypt(i), cipsut.decrypt(pl[site_name][i]))
     else:
-        for i in pl.keys():
-            for j in pl[i].keys():
+        for i in pl:
+            for j in pl[i]:
                 print(cipsut.decrypt(j),cipsut.decrypt(pl[i][j]))
     return print('Done')
 
