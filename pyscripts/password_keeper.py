@@ -22,10 +22,7 @@ def write_pickle(pl):
 def new_password(cipsut, site_name,site_user,site_pass):
     pl = read_pickle()
     if site_name and site_name in pl.keys():
-        if site_user and site_user in pl[site_name].keys():
-            pl[site_name][site_user] = site_pass
-        else:
-            pl[site_name].update({site_user:site_pass})
+        pl[site_name].update({site_user:site_pass})
     else:
         pl.update({site_name:{site_user:site_pass}})
     return print(write_pickle(pl))
