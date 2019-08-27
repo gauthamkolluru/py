@@ -21,7 +21,7 @@ def write_pickle(pl):
 
 def new_password(cipsut, site_name,site_user,site_pass):
     pl = read_pickle()
-    if site_name and site_name in pl.keys():
+    if site_name and site_name in pl:
         pl[site_name].update({site_user:site_pass})
     else:
         pl.update({site_name:{site_user:site_pass}})
@@ -29,8 +29,8 @@ def new_password(cipsut, site_name,site_user,site_pass):
 
 def del_password(cipsut, site_name,site_user):
     pl = read_pickle()
-    if site_name and site_name in pl.keys():
-        if site_user and site_user in pl[site_name].keys() and len(pl[site_name]) > 1:
+    if site_name and site_name in pl:
+        if site_user and site_user in pl[site_name] and len(pl[site_name]) > 1:
             pl[site_name].pop(site_user)
         else:
             pl.pop(site_name)
@@ -61,9 +61,9 @@ def selected_choice(user_choice):
     site_user = cipsut.encrypt(bytes(input('Site Username: '), 'utf-8'))
     site_pass = cipsut.encrypt(bytes(input('Site Password: '), 'utf-8'))
     if user_choice == '1':
-        return_string = new_password(cipsut, site_name,site_user, site_pass)
+        return_string = new_password(cipsut, site_name, site_user, site_pass)
     elif user_choice == '2':
-        return_string = new_password(cipsut, site_name,site_user, site_pass)
+        return_string = new_password(cipsut, site_name, site_user, site_pass)
     elif user_choice == '3':
         return_string = show_password(cipsut, site_name, site_user)
     elif user_choice == '4':
