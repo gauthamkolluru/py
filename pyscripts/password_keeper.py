@@ -84,8 +84,7 @@ def pass_menu():
     print('4. Delete Password')
     print('5. Exit')
     user_choice = input('Enter a choice: ')
-    return_string = selected_choice(user_choice)
-    return return_string
+    return selected_choice(user_choice)
 
 if __name__ == '__main__':
     final_string = pass_menu()
