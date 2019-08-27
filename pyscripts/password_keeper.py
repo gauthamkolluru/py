@@ -25,8 +25,7 @@ def new_password(cipsut, site_name,site_user,site_pass):
         pl[site_name].update({site_user:site_pass})
     else:
         pl.update({site_name:{site_user:site_pass}})
-    return print(write_pickle(pl))
-
+    return write_pickle(pl)
 
 def del_password(cipsut, site_name,site_user):
     pl = read_pickle()
@@ -37,7 +36,7 @@ def del_password(cipsut, site_name,site_user):
             pl.pop(site_name)
     else:
         print('Sorry! Entered details does not exist !!!')
-    return print(write_pickle(pl))
+    return write_pickle(pl)
 
 def show_password(cipsut, site_name,site_user):
     pl = read_pickle()
@@ -53,26 +52,30 @@ def show_password(cipsut, site_name,site_user):
         for i in pl:
             for j in pl[i]:
                 print(cipsut.decrypt(j),cipsut.decrypt(pl[i][j]))
-    return print('Done')
+    return 'Done'
 
 
 def selected_choice(user_choice):
-    with open('pass_key.dat','rb') as fp:
-        key = fp.read()
-    cipsut = Fernet(key)
+    cipsut = user_key()
     site_name = cipsut.encrypt(bytes(input('Site Name: '),'utf-8'))
     site_user = cipsut.encrypt(bytes(input('Site Username: '), 'utf-8'))
     site_pass = cipsut.encrypt(bytes(input('Site Password: '), 'utf-8'))
     if user_choice == '1':
-        return new_password(cipsut, site_name,site_user,site_pass)
+        return_string = new_password(cipsut, site_name,site_user, site_pass)
     elif user_choice == '2':
-        return new_password(cipsut, site_name,site_user,site_pass)
+        return_string = new_password(cipsut, site_name,site_user, site_pass)
     elif user_choice == '3':
-        return show_password(cipsut, site_name,site_user)
+        return_string = show_password(cipsut, site_name, site_user)
     elif user_choice == '4':
-        return del_password(cipsut, site_name,site_user)
+        return_string = del_password(cipsut, site_name, site_user)
     else:
-        return exit(0)
+        return_string = "You've choosen to exit!"
+    return return_string
+
+def user_key():
+    with open('pass_key.dat','rb') as fp:
+        key = fp.read()
+    return Fernet(key)
 
 def pass_menu():
     print('1. New Password')
@@ -81,10 +84,9 @@ def pass_menu():
     print('4. Delete Password')
     print('5. Exit')
     user_choice = input('Enter a choice: ')
-    return selected_choice(user_choice)
-
-
-
+    return_string = selected_choice(user_choice)
+    return return_string
 
 if __name__ == '__main__':
-    pass_menu()
+    final_string = pass_menu()
+    print(final_string)
