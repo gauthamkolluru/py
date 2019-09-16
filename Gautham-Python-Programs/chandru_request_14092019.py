@@ -12,7 +12,7 @@
 
 # print(list(map(lambda x : list(filter(lambda y : y if y[0] % 2 == 0 and y[-1] % 2 == 1 else None, x)),)))
 
-list(map(lambda i : list(map(lambda j : (i,j), list(filter(lambda x : x % 2 == 1, range(5))))),list(filter(lambda x : x % 2 == 0, range(5)))))
+list(map(lambda i : map(lambda j : (i,j), filter(lambda x : x % 2 == 1, range(5))),filter(lambda x : x % 2 == 0, range(5))))
 
 # print(list(filter(lambda x : 'x' if x % 2 == 0 else None, range(5))))
 
