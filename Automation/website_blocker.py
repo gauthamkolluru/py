@@ -6,10 +6,12 @@ hosts_path = '/etc/hosts'
 redirect = '127.0.0.1'
 
 block_site_list = [
-    'www.facebook.com', 'facebook.com', 'www.gmail.com', 'gmail.com', 'studio.youtube.com', 'www.youtube.com'
+    'www.facebook.com', 'facebook.com', 'mail.google.com', 'studio.youtube.com',
+    'www.youtube.com', 'www.primevideo.com', 'www.amazon.in', 'www.flipkart.com',
+    'www.myntra.com', 'www.jabong.com', 'www.imdb.com', 'www.netflix.com'
 ]
 
-while 10 <= dt.now().hour <= 20:
+if 0 <= dt.weekday(dt.now()) < 5 and 10 <= dt.now().hour <= 20: # Weekdays are numbered from 0 to 6 Starting from Monday = 0 to Sunday = 6
     with open(hosts_path, 'r+') as file_ob:
         content = file_ob.read()
         for site in block_site_list:
@@ -25,6 +27,5 @@ else:
         
         file_ob.truncate()
 
-time.sleep(5)
 
 # /home/gautham/Documents/CodingLabs/pybench/Automation/website_blocker.py
