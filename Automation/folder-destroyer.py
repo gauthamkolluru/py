@@ -1,12 +1,10 @@
-# Lets automate the process of deleting any empty folders from the system
+# Lets automate the process of deleting any empty folders from the Downloads folder
 
 import os
-import shutil
 
 # Folders to look into - fl
 
 fl = [
-    '/home/gautham/Documents',
     '/home/gautham/Downloads',
 ]
 
