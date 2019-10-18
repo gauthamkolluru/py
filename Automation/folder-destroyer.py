@@ -1,6 +1,9 @@
 # Lets automate the process of deleting any empty folders from the Downloads folder
 
 import os
+import time
+
+time.sleep(245)
 
 # Folders to look into - fl
 

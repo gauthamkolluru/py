@@ -21,3 +21,4 @@ scraping_Google.py
 *.pkl
 *.pickle
 *.dat
+*.json

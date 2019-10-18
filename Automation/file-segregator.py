@@ -1,5 +1,8 @@
 import os
 import shutil
+import time
+
+time.sleep(45)
 
 source_folder = '/home/gautham/Downloads/'
 

@@ -1,6 +1,8 @@
 import time
 from datetime import datetime as dt
 
+time.sleep(35)
+
 hosts_path = '/etc/hosts'
 
 redirect = '127.0.0.1'
