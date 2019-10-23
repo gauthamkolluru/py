@@ -9,7 +9,7 @@ redirect = '127.0.0.1'
 
 block_site_list = [
     'www.facebook.com', 'facebook.com', 'mail.google.com', 'studio.youtube.com',
-    'www.youtube.com', 'www.primevideo.com', 'www.amazon.in', 'www.flipkart.com',
+    'www.primevideo.com', 'www.amazon.in', 'www.flipkart.com',
     'www.myntra.com', 'www.jabong.com', 'www.imdb.com', 'www.netflix.com'
 ]
 

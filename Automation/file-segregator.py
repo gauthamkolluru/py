@@ -16,7 +16,8 @@ destination_folders = {
     ('mp4', 'mkv', 'mpeg', 'avi'):'/home/gautham/Videos/',
     ('jpg', 'jpeg', 'png'):'/home/gautham/Pictures/',
     ('zip', 'tar', 'gz', 'tgz', 'rar'):'/home/gautham/Documents/ZIPs/',
-    ('deb', 'pkg'):'/home/gautham/Documents/Software-Packages/'
+    ('deb', 'pkg'):'/home/gautham/Documents/Software-Packages/',
+    ('py'):'/home/gautham/Documents/externalpy/'
     }
 
 # We os.walk() method to parse through the downloads folder and get the details of all the files
