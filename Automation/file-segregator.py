@@ -2,7 +2,7 @@ import os
 import shutil
 import time
 
-time.sleep(45)
+# time.sleep(45)
 
 source_folder = '/home/gautham/Downloads/'
 
@@ -17,7 +17,7 @@ destination_folders = {
     ('jpg', 'jpeg', 'png'):'/home/gautham/Pictures/',
     ('zip', 'tar', 'gz', 'tgz', 'rar'):'/home/gautham/Documents/ZIPs/',
     ('deb', 'pkg'):'/home/gautham/Documents/Software-Packages/',
-    ('py'):'/home/gautham/Documents/externalpy/'
+    ('py', 'ipynb'):'/home/gautham/Documents/externalpy/'
     }
 
 # We os.walk() method to parse through the downloads folder and get the details of all the files
@@ -38,7 +38,13 @@ for abs_path,sub_dirs,file_names in os.walk(source_folder):
             if not folder_key:
                 folder_key = extention if each_file.split('.')[-1].lower() in extention else ''
         if folder_key:
-            shutil.move(os.path.join(abs_path, each_file), os.path.join(destination_folders[folder_key], each_file))
+            if folder_key == ('py', 'ipynb'):
+                if abs_path == source_folder:
+                    shutil.move(os.path.join(abs_path, each_file), os.path.join(destination_folders[folder_key], each_file))
+                else:
+                    continue
+            else:        
+                shutil.move(os.path.join(abs_path, each_file), os.path.join(destination_folders[folder_key], each_file))
         #     print(each_file + ' has been moved to ' + destination_folders[folder_key])
         # else:
         #     print("folder key did not exist" + each_file)
