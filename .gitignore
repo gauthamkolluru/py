@@ -1,24 +1,32 @@
-.ipynb_checkpoints
-__pycache__
-package.json
-/venv
-/venv/*
-/venv/*.*
-/google-search-results-python
-/google-search-results-python/*.*
-sample.*
-sample*.*
-sample1.*
-sample_test.*
-scraping_Google.py
-*/*.mp4
-/botenv/*
-/botenv/*/*.*
-*.csv
-/*.csv
-*.zip
-/*.zip
-*.pkl
-*.pickle
-*.dat
-*.json
+*
+
+!.gitignore
+!*.py
+!*.md
+
+
+# .ipynb_checkpoints
+# __pycache__
+# package.json
+# /venv
+# /venv/*
+# /venv/*.*
+# /google-search-results-python
+# /google-search-results-python/*.*
+# sample.*
+# sample*.*
+# sample1.*
+# sample_test.*
+# scraping_Google.py
+# */*.mp4
+# /botenv/*
+# /botenv/*/*.*
+# *.csv
+# /*.csv
+# *.zip
+# /*.zip
+# *.pkl
+# *.pickle
+# *.dat
+# *.json
+# *.log
