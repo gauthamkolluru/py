@@ -1,8 +1,8 @@
 *
 
-!.gitignore
-!*/**/*.py
-!*/**/*.md
+! .gitignore
+! /**/*.py
+! /**/*.md
 
 
 # .ipynb_checkpoints
