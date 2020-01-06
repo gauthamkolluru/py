@@ -25,15 +25,16 @@ class TimeKeeper:
         self.__work_sessions_total = 16
         self.__work_session_count = 1
         self.__want_to_work_text = "Do you wish to work today?"
-        self.__path_to_file = "C:\\Users\\sakollur\\Documents\\tasks_and_notes"
+        self.__path_to_file = "C:\\Users\\sakollur\\Documents\\task_keeper"
         self.__file_name = f"{datetime.now().strftime('%d%m%Y')}"
-        self.__md_title = "Tasks & Notes\n\n"
-        self.__md_author = os.environ['USERNAME']+"\n\n"
-        self.__md_date = f"{datetime.now().strftime('%B')} {datetime.now().strftime('%d')}, {datetime.now().strftime('%Y')}\n\n"
         self.__file_ext = ".md"
+        self.__fully_qual_file_name = os.path.join(self.__path_to_file, (self.__file_name + self.__file_ext))
+        self.__md_title = "% Tasks & Notes\n\n"
+        self.__md_author = "% " + os.environ['USERNAME']+"\n\n"
+        self.__md_date = f"% {datetime.now().strftime('%B')} {datetime.now().strftime('%d')}, {datetime.now().strftime('%Y')}"
 
     def __greetings(self):
-        with open(os.path.join(self.__path_to_file, (self.__md_date + self.__file_ext)), 'w') as fh:
+        with open(self.__fully_qual_file_name, 'w') as fh:
             fh.write(self.__md_title)
             fh.write(self.__md_author)
             fh.write(self.__md_date)
@@ -45,7 +46,7 @@ class TimeKeeper:
         return messagebox.askokcancel(self.__title, self.__want_to_work_text)
 
     def __file_calls(self):
-        return subprocess.run(['code', os.path.join(self.__path_to_file, (self.__file_name + self.__file_ext))], shell=True)
+        return subprocess.run(['code', self.__fully_qual_file_name], shell=True)
 
     def __time_keeper(self):
         self.__sleep_time = self.__work_time

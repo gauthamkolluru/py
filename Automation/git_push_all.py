@@ -17,7 +17,7 @@ def find_modified_repos(dir_list):
     for directory in dir_list:
         dir_contents = os.listdir(os.path.join(set_root_dir(),directory))
         for content in dir_contents:
-            
+            pass
     return ""
 
 
