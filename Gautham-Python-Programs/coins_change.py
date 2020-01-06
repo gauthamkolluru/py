@@ -1,12 +1,12 @@
-def change_coins(amount = None):
-    coins_draw = {50:5, 25:5, 5:10, 1:20}
+def change_coins(amount=None):
+    denominations = {50: 5, 25: 5, 5: 10, 1: 20}
     if amount:
-        for i in sorted(coins_draw, reverse=True):
-            if amount >= i:
-                if amount % i:
-                    return (amount // i) + change_coins(amount - ((amount // i) * i))
+        for denomination in sorted(denominations, reverse=True):
+            if amount >= denomination:
+                if amount % denomination:
+                    return (amount // denomination) + change_coins(amount - ((amount // denomination) * denomination))
                 else:
-                    return amount // i
+                    return amount // denomination
 
 
 print(change_coins(47))
