@@ -28,18 +28,17 @@ class TimeKeeper:
         self.__path_to_file = "C:\\Users\\sakollur\\Documents\\task_keeper"
         self.__file_name = f"{datetime.now().strftime('%d%m%Y')}"
         self.__file_ext = ".md"
-        self.__fully_qual_file_name = os.path.join(self.__path_to_file, (self.__file_name + self.__file_ext))
-        self.__md_title = "% Tasks & Notes\n\n"
-        self.__md_author = "% " + os.environ['USERNAME']+"\n\n"
-        self.__md_date = f"% {datetime.now().strftime('%B')} {datetime.now().strftime('%d')}, {datetime.now().strftime('%Y')}"
+        self.__fully_qual_file_name = os.path.join(
+            self.__path_to_file, (self.__file_name + self.__file_ext))
+        self.__md_title = "title: Tasks & Notes\n\n"
+        self.__md_author = "author: " + os.environ['USERNAME']+"\n\n"
+        self.__md_date = f"date: {datetime.now().strftime('%B')} {datetime.now().strftime('%d')}, {datetime.now().strftime('%Y')}\n"
+        self.__md_metadata_separator = "---\n"
 
     def __greetings(self):
         with open(self.__fully_qual_file_name, 'w') as fh:
-            fh.write(self.__md_title)
-            fh.write(self.__md_author)
-            fh.write(self.__md_date)
-            fh.write("# Tasks & Notes\n\n")
-            fh.write("## Tasks\n\n")
+            fh.writelines([self.__md_metadata_separator, self.__md_title, self.__md_author,
+                           self.__md_date, self.__md_metadata_separator, "# Tasks & Notes\n\n", "## Tasks\n\n"])
         return messagebox.showinfo(self.__title, self.__greet_text)
 
     def __continue_dialog(self):
