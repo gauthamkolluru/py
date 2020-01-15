@@ -25,7 +25,10 @@ class TimeKeeper:
         self.__work_sessions_total = 16
         self.__work_session_count = 1
         self.__want_to_work_text = "Do you wish to work today?"
-        self.__path_to_file = "C:\\Users\\sakollur\\Documents\\task_keeper"
+        os.makedirs(os.path.join(os.path.join(os.path.expanduser(
+            '~'), 'Documents'), 'task_keeper'), exist_ok=True)
+        self.__path_to_file = os.path.join(os.path.join(
+            os.path.expanduser('~'), 'Documents'), 'task_keeper')
         self.__file_name = f"{datetime.now().strftime('%d%m%Y')}"
         self.__file_ext = ".md"
         self.__fully_qual_file_name = os.path.join(
@@ -70,6 +73,7 @@ class TimeKeeper:
         if self.__continue_dialog():
             if not os.path.exists(os.path.join(self.__path_to_file, (self.__file_name + self.__file_ext))):
                 self.__greetings()
+                self.__file_calls()
             self.__time_keeper()
         return exit(0)
 
