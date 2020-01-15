@@ -30,8 +30,8 @@ class TimeKeeper:
         self.__file_ext = ".md"
         self.__fully_qual_file_name = os.path.join(
             self.__path_to_file, (self.__file_name + self.__file_ext))
-        self.__md_title = "title: Tasks & Notes\n\n"
-        self.__md_author = "author: " + os.environ['USERNAME']+"\n\n"
+        self.__md_title = "title: Tasks & Notes\n"
+        self.__md_author = "author: " + os.environ['USERNAME']+"\n"
         self.__md_date = f"date: {datetime.now().strftime('%B')} {datetime.now().strftime('%d')}, {datetime.now().strftime('%Y')}\n"
         self.__md_metadata_separator = "---\n"
 
@@ -45,7 +45,7 @@ class TimeKeeper:
         return messagebox.askokcancel(self.__title, self.__want_to_work_text)
 
     def __file_calls(self):
-        return subprocess.run(['code', self.__fully_qual_file_name], shell=True)
+        return subprocess.run(['start', self.__fully_qual_file_name], shell=True)
 
     def __time_keeper(self):
         self.__sleep_time = self.__work_time
