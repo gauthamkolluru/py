@@ -73,7 +73,7 @@ class TimeKeeper:
         if self.__continue_dialog():
             if not os.path.exists(os.path.join(self.__path_to_file, (self.__file_name + self.__file_ext))):
                 self.__greetings()
-                self.__file_calls()
+            self.__file_calls()
             self.__time_keeper()
         return exit(0)
 
