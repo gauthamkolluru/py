@@ -10,23 +10,27 @@ class GitPullPush:
         return f'/home/{os.environ["USER"]}/Documents/'
 
 
-    def find_local_repos(self, root_dir):
-        return [directory for directory in os.listdir(root_dir) if os.path.exists(
-            os.path.join(os.path.join(root_dir, directory), '.git'))]
+    def find_local_repos(self):
+        self.root_dir = self.set_root_dir()
+        return [directory for directory in os.listdir(self.root_dir) if os.path.exists(
+            os.path.join(os.path.join(self.root_dir, directory), '.git'))]
 
-    def git_pull_all(self, dir_list):
-        for directory in dir_list:
-            subprocess.run(['cd', os.path.join(self.set_root_dir(), directory)], shell=True)
-            subprocess.run(['git','pull'], shell=True)
+    def git_pull_all(self):
+        self.dir_list = self.find_local_repos()
+        for directory in self.dir_list:
+            subprocess.run(['git','pull'], cwd=os.path.join(self.set_root_dir(), directory), shell=True)
         return "ok"
 
-    def find_modified_repos(self, dir_list):
-        for directory in dir_list:
+    def find_modified_repos(self):
+        self.dir_list = self.find_local_repos()
+        for directory in self.dir_list:
             for content in os.listdir(os.path.join(self.set_root_dir(),directory)):
-                pass
+                print(content)
+            break
         return ""
 
 
 if __name__ == "__main__":
     git_obj = GitPullPush()
-    git_obj.git_pull_all(git_obj.find_local_repos(git_obj.set_root_dir()))
+    # git_obj.git_pull_all()
+    git_obj.find_modified_repos()
