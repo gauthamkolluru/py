@@ -4,9 +4,12 @@ def change_coins(amount=None):
         for denomination in sorted(denominations, reverse=True):
             if amount >= denomination:
                 if amount % denomination:
-                    return (amount // denomination) + change_coins(amount - ((amount // denomination) * denomination))
+                    return (amount // denomination) + change_coins(amount % denomination)
                 else:
                     return amount // denomination
 
 
-print(change_coins(47))
+print(change_coins(85))
+
+
+# amount - ((amount // denomination) * denomination)
